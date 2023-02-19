@@ -15,4 +15,9 @@ class Gradients {
       begin: Alignment.topLeft,
       end: Alignment.bottomCenter,
       colors: [ColorPalette.secondColor, ColorPalette.primaryColor]);
+
+  static const Gradient secondGradientBackground = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomCenter,
+      colors: [ColorPalette.dividerColor, ColorPalette.dividerColor]);
 }

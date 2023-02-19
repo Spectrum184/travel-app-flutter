@@ -4,7 +4,7 @@ import 'package:travel_app/core/constants/dimension_constants.dart';
 import 'package:travel_app/core/helpers/asset_helper.dart';
 import 'package:travel_app/core/helpers/image_helper.dart';
 import 'package:travel_app/representations/screens/hotel_booking_screen.dart';
-import 'package:travel_app/representations/widgets/app_bar_container.dart';
+import 'package:travel_app/representations/widgets/app_bar_container_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

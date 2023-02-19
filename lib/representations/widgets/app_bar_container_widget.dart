@@ -13,14 +13,14 @@ class AppBarContainerWidget extends StatelessWidget {
       this.implementLeading = false,
       this.titleString,
       this.implementTrailing = false,
-      this.trailingRouterName});
+      this.trailingOnTap});
 
   final Widget child;
   final Widget? title;
   final String? titleString;
   final bool implementLeading;
   final bool implementTrailing;
-  final String? trailingRouterName;
+  final Function()? trailingOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -70,15 +70,12 @@ class AppBarContainerWidget extends StatelessWidget {
                       )),
                       if (implementTrailing)
                         GestureDetector(
-                          onTap: () {
-                            Navigator.of(context)
-                                .pushNamed(trailingRouterName ?? '');
-                          },
+                          onTap: trailingOnTap,
                           child: Container(
                             decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(kItemPadding)),
-                            ),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(kItemPadding)),
+                                color: Colors.white),
                             padding: const EdgeInsets.all(kDefaultPadding),
                             child: const Icon(
                               FontAwesomeIcons.bars,

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/core/constants/dimension_constants.dart';
 import 'package:travel_app/core/extensions/date_ext.dart';
 import 'package:travel_app/core/helpers/asset_helper.dart';
+import 'package:travel_app/representations/screens/guest_and_room_booking_screen.dart';
+import 'package:travel_app/representations/screens/hotel_screen.dart';
 import 'package:travel_app/representations/screens/select_date_screen.dart';
-import 'package:travel_app/representations/widgets/app_bar_container.dart';
+import 'package:travel_app/representations/widgets/app_bar_container_widget.dart';
 import 'package:travel_app/representations/widgets/button_widget.dart';
 import 'package:travel_app/representations/widgets/item_booking_widget.dart';
 
@@ -18,6 +20,7 @@ class HotelBookingScreen extends StatefulWidget {
 
 class _HotelBookingScreenState extends State<HotelBookingScreen> {
   String? dateSelected;
+  String? roomSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -60,16 +63,36 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
           const SizedBox(
             height: kMediumPadding,
           ),
-          ItemBookingWidget(
-            icon: AssetHelper.iconBed,
-            description: "2 Guest, 1 Room",
-            title: "Guest and Room",
-            onTap: () {},
-          ),
+          StatefulBuilder(builder: (context, setState) {
+            return ItemBookingWidget(
+              icon: AssetHelper.iconBed,
+              description: roomSelected ?? "2 Guest, 1 Room",
+              title: "Guest and Room",
+              onTap: () async {
+                final result = await Navigator.of(context)
+                    .pushNamed(GuestAndRoomBookingScreen.routeName);
+
+                if (result != null) {
+                  if (!(result as List<int?>)
+                      .any((element) => element == null)) {
+                    roomSelected = '${result[0]} Guest - ${result[1]} Room';
+                  }
+                } else {
+                  roomSelected = null;
+                }
+                setState(() {});
+              },
+            );
+          }),
           const SizedBox(
             height: kMediumPadding,
           ),
-          const ButtonWidget(title: "Search")
+          ButtonWidget(
+            title: "Search",
+            onTap: () {
+              Navigator.of(context).pushNamed(HotelScreen.routeName);
+            },
+          )
         ]),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:travel_app/core/constants/color_constants.dart';
 import 'package:travel_app/core/constants/dimension_constants.dart';
-import 'package:travel_app/representations/widgets/app_bar_container.dart';
+import 'package:travel_app/representations/widgets/app_bar_container_widget.dart';
 import 'package:travel_app/representations/widgets/button_widget.dart';
 
 class SelectDateScreen extends StatefulWidget {
@@ -59,6 +59,7 @@ class _SelectDateScreenState extends State<SelectDateScreen> {
             ),
             ButtonWidget(
               title: "Cancel",
+              isCancelBtn: true,
               onTap: () {
                 Navigator.of(context).pop([rangeStartDate, rangeEndDate]);
               },
