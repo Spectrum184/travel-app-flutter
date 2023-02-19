@@ -5,20 +5,22 @@ import 'package:travel_app/core/constants/dimension_constants.dart';
 import 'package:travel_app/core/helpers/asset_helper.dart';
 import 'package:travel_app/core/helpers/image_helper.dart';
 
-class AppBarContainer extends StatelessWidget {
-  const AppBarContainer(
+class AppBarContainerWidget extends StatelessWidget {
+  const AppBarContainerWidget(
       {super.key,
       required this.child,
       this.title,
       this.implementLeading = false,
       this.titleString,
-      this.implementTrailing = false});
+      this.implementTrailing = false,
+      this.trailingRouterName});
 
   final Widget child;
   final Widget? title;
   final String? titleString;
   final bool implementLeading;
   final bool implementTrailing;
+  final String? trailingRouterName;
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +39,21 @@ class AppBarContainer extends StatelessWidget {
                   Row(
                     children: [
                       if (implementLeading)
-                        Container(
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(kDefaultPadding)),
-                              color: Colors.white),
-                          padding: const EdgeInsets.all(kDefaultPadding),
-                          child: const Icon(
-                            FontAwesomeIcons.arrowLeft,
-                            color: Colors.black,
-                            size: kDefaultIconSize,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(kDefaultPadding)),
+                                color: Colors.white),
+                            padding: const EdgeInsets.all(kDefaultPadding),
+                            child: const Icon(
+                              FontAwesomeIcons.arrowLeft,
+                              color: Colors.black,
+                              size: kDefaultIconSize,
+                            ),
                           ),
                         ),
                       Expanded(
@@ -62,16 +69,22 @@ class AppBarContainer extends StatelessWidget {
                         ),
                       )),
                       if (implementTrailing)
-                        Container(
-                          decoration: const BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(kItemPadding)),
-                          ),
-                          padding: const EdgeInsets.all(kDefaultPadding),
-                          child: const Icon(
-                            FontAwesomeIcons.bars,
-                            color: Colors.black,
-                            size: kDefaultIconSize,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(trailingRouterName ?? '');
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(kItemPadding)),
+                            ),
+                            padding: const EdgeInsets.all(kDefaultPadding),
+                            child: const Icon(
+                              FontAwesomeIcons.bars,
+                              color: Colors.black,
+                              size: kDefaultIconSize,
+                            ),
                           ),
                         ),
                     ],

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/constants/dimension_constants.dart';
 import 'package:travel_app/core/helpers/asset_helper.dart';
 import 'package:travel_app/core/helpers/image_helper.dart';
+import 'package:travel_app/representations/screens/hotel_booking_screen.dart';
 import 'package:travel_app/representations/widgets/app_bar_container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AppBarContainer(
+    return AppBarContainerWidget(
       title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
           child: Row(
@@ -108,19 +109,28 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
                 child: _buildItemCategory(
-                    ImageHelper.loadFromAsset(AssetHelper.hotel),
-                    const Color(0xffFE9C5E),
-                    () {},
-                    'Hotels')),
+                    ImageHelper.loadFromAsset(AssetHelper.hotel,
+                        width: kDefaultIconSize, height: kDefaultIconSize),
+                    const Color(0xffFE9C5E), () {
+              Navigator.of(context).pushNamed(HotelBookingScreen.routeName);
+            }, 'Hotels')),
+            const SizedBox(
+              width: kDefaultPadding,
+            ),
             Expanded(
                 child: _buildItemCategory(
-                    ImageHelper.loadFromAsset(AssetHelper.flight),
+                    ImageHelper.loadFromAsset(AssetHelper.flight,
+                        width: kDefaultIconSize, height: kDefaultIconSize),
                     const Color(0xffF77777),
                     () {},
                     'Flights')),
+            const SizedBox(
+              width: kDefaultPadding,
+            ),
             Expanded(
                 child: _buildItemCategory(
-                    ImageHelper.loadFromAsset(AssetHelper.flightAll),
+                    ImageHelper.loadFromAsset(AssetHelper.flightAll,
+                        width: kDefaultIconSize, height: kDefaultIconSize),
                     const Color(0xff3EC8BC),
                     () {},
                     'All'))
