@@ -23,4 +23,16 @@ class AssetHelper {
   static const String hotel1 = 'assets/images/hotel1.png';
   static const String hotel2 = 'assets/images/hotel2.png';
   static const String hotel3 = 'assets/images/hotel3.png';
+  static const String hotelDetail = 'assets/images/hotel_detail.png';
+  static const String mapHotel = 'assets/images/map.png';
+  static const String iconWifi = 'assets/icons/ico_wifi.png';
+  static const String iconMore = 'assets/icons/ico_more.png';
+  static const String iconExchange = 'assets/icons/ico_exchange.png';
+  static const String iconDesk = 'assets/icons/ico_desk.png';
+  static const String iconNoSmoking = 'assets/icons/ico_nosmoking.png';
+  static const String iconNoRefund = 'assets/icons/ico_non_refund.png';
+  static const String iconBreakfast = 'assets/icons/ico_breakfast.png';
+  static const String room1 = 'assets/images/room1.png';
+  static const String room2 = 'assets/images/room2.png';
+  static const String room3 = 'assets/images/room3.png';
 }
