@@ -94,7 +94,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                     const SizedBox(
                       height: kDefaultPadding,
                     ),
-                    Expanded(
+                    Positioned(
                         child: ListView(
                       controller: scrollController,
                       children: [

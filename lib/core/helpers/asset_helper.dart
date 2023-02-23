@@ -35,4 +35,10 @@ class AssetHelper {
   static const String room1 = 'assets/images/room1.png';
   static const String room2 = 'assets/images/room2.png';
   static const String room3 = 'assets/images/room3.png';
+  static const String iconPromo = 'assets/icons/ico_promo.png';
+  static const String iconContact = 'assets/icons/ico_contact.png';
+  static const String home1 = 'assets/images/home1.png';
+  static const String home2 = 'assets/images/home2.png';
+  static const String home3 = 'assets/images/home3.png';
+  static const String home4 = 'assets/images/home4.png';
 }

@@ -12,13 +12,17 @@ class ItemRoomBookingWidget extends StatelessWidget {
       required this.roomName,
       required this.roomPrice,
       required this.roomUtility,
-      required this.roomSize});
+      required this.roomSize,
+      required this.onTap,
+      this.numberOfRoom});
 
   final String roomImage;
   final String roomName;
-  final String roomPrice;
+  final int roomPrice;
   final int roomSize;
   final String roomUtility;
+  final Function() onTap;
+  final int? numberOfRoom;
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +78,13 @@ class ItemRoomBookingWidget extends StatelessWidget {
                 const Text("/night")
               ],
             )),
-            Expanded(
-                child: ButtonWidget(
-              title: "Choose",
-              onTap: () {},
-            ))
+            numberOfRoom != null
+                ? Text("${numberOfRoom}room")
+                : Expanded(
+                    child: ButtonWidget(
+                    title: "Choose",
+                    onTap: onTap,
+                  ))
           ],
         )
       ]),

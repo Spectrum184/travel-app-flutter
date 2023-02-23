@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/constants/dimension_constants.dart';
+import 'package:travel_app/core/constants/text_styles_constants.dart';
 import 'package:travel_app/core/helpers/asset_helper.dart';
 import 'package:travel_app/core/helpers/image_helper.dart';
 import 'package:travel_app/representations/screens/hotel_booking_screen.dart';
@@ -14,6 +15,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<Map<String, String>> listImageLeft = [
+    {
+      'name': 'Korea',
+      'image': AssetHelper.home1,
+    },
+    {
+      'name': 'Dubai',
+      'image': AssetHelper.home2,
+    },
+  ];
+  final List<Map<String, String>> listImageRight = [
+    {
+      'name': 'Turkey',
+      'image': AssetHelper.home3,
+    },
+    {
+      'name': 'Japan',
+      'image': AssetHelper.home4,
+    },
+  ];
+
   Widget _buildItemCategory(
       Widget icon, Color color, Function() onTap, String title) {
     return GestureDetector(
@@ -34,6 +56,66 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Text(title)
       ]),
+    );
+  }
+
+  Widget _buildItemDestination(String name, String image) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(HotelBookingScreen.routeName, arguments: name);
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: kMediumPadding),
+        child: Stack(alignment: Alignment.topRight, children: [
+          ImageHelper.loadFromAsset(image,
+              fit: BoxFit.fitWidth,
+              width: double.infinity,
+              radius: const BorderRadius.all(Radius.circular(kDefaultPadding))),
+          const Padding(
+            padding: EdgeInsets.all(kDefaultPadding),
+            child: Icon(
+              FontAwesomeIcons.solidHeart,
+              color: Colors.red,
+            ),
+          ),
+          Positioned(
+            left: kDefaultPadding,
+            bottom: kDefaultPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: TextStyles.defaultStyle.whiteTextColor.bold,
+                ),
+                const SizedBox(
+                  height: kItemPadding,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(kMinPadding),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(kMinPadding),
+                      color: Colors.white.withOpacity(0.4)),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(
+                        Icons.star,
+                        color: Color(0xffFFC107),
+                      ),
+                      SizedBox(
+                        width: kMinPadding,
+                      ),
+                      Text('4.5')
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )
+        ]),
+      ),
     );
   }
 
@@ -112,7 +194,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ImageHelper.loadFromAsset(AssetHelper.hotel,
                         width: kDefaultIconSize, height: kDefaultIconSize),
                     const Color(0xffFE9C5E), () {
-              Navigator.of(context).pushNamed(HotelBookingScreen.routeName);
+              Navigator.of(context)
+                  .pushNamed(HotelBookingScreen.routeName, arguments: "OK");
             }, 'Hotels')),
             const SizedBox(
               width: kDefaultPadding,
@@ -135,7 +218,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     () {},
                     'All'))
           ],
-        )
+        ),
+        const SizedBox(
+          height: kMinPadding,
+        ),
+        Expanded(
+            child: SingleChildScrollView(
+          child: Row(
+            children: [
+              Expanded(
+                  child: Column(
+                children: listImageLeft
+                    .map((e) => _buildItemDestination(e["name"]!, e["image"]!))
+                    .toList(),
+              )),
+              const SizedBox(
+                width: kMinPadding,
+              ),
+              Expanded(
+                  child: Column(
+                children: listImageRight
+                    .map((e) => _buildItemDestination(e["name"]!, e["image"]!))
+                    .toList(),
+              ))
+            ],
+          ),
+        ))
       ]),
     );
   }
